@@ -1,0 +1,683 @@
+@charset "utf-8";
+
+/*especificações gerais*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////*/
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+html, body {
+    min-height: 100%;
+}
+body {
+    padding: 0;
+    margin: 0;
+	display: flex;
+    flex-direction: column;
+	min-height: 100%;
+	
+}
+@font-face{
+	font-family: "minha fonte";
+	src: url("../fontes/FiraSans-Bold.ttf");
+}
+
+@font-face{
+	font-family: "outra fonte";
+	src:  url("../fontes/Montserrat-Light.ttf");
+}
+
+ul, ol{
+	list-style: none;
+}
+
+
+
+/*configurações header cabeçario*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////*/
+header {
+    display: flex;
+    justify-content: space-between; /* Distribui o espaço entre a logo e o nav */
+    align-items: center; /* Alinha verticalmente a logo e o nav */
+    background-color: #000; /* Cor de fundo do header */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Sombra sutil para o header */
+    position: relative; /* Permite melhorias futuras, como elementos posicionados de forma relativa */
+    z-index: 1000; /* Garante que o header fique sobreposto a outros elementos */
+    width: 100%; /* Garante que o header ocupe toda a largura da tela */
+    padding: 0 20px; /* Adiciona um padding para que o conteúdo não fique colado às bordas */
+}
+
+
+
+nav {
+    display: flex;
+    align-items: center; /* Alinha verticalmente o conteúdo dentro do nav */
+    gap: 15px; /* Espaçamento entre os itens do nav */
+}
+nav li {
+    font-family: "minha fonte";
+    display: inline;
+    font-size: 25px;
+    color: rgb(213, 213, 213);
+}
+nav li:hover {
+    color: white;
+    font-size: 25px;
+}
+
+
+/*mudar a cor do link - tirar azul*/
+nav li a:link,
+nav li a:visited {
+    color: rgb(213, 213, 213);
+}
+
+.quadrado-arredondado p {
+	color: #FFFFFF;
+	font-size: 16px;
+	text-align: center;
+
+
+  }
+
+  .logo{
+	width: 130px;
+	height: 130px;
+	margin-left: 50px;
+}
+
+
+
+
+
+
+/*configurações footer baixo*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+
+
+.footerhome {
+	font-family: "outra fonte";
+	background: rgb(0, 0, 0) !important;
+	color: #FFF;
+	width: 100%;
+	
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	line-height: 60px; /* Ajuste para a altura do footer */
+  }
+
+  
+
+/*configurações quadrados de ação*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+
+.centro{
+	margin-left: 90px;
+	margin-top: 120px;
+	margin-right: 90px;
+	
+}
+
+.centro-quadrado-geral{
+	margin-left: 90px;
+	margin-top: 30px;
+	margin-right: 90px;
+	margin-bottom: 60px;
+}
+.centro-quadrado-fino{
+	margin-left: 30px;
+	margin-top: 40px;
+	margin-right: 30px;
+	
+}
+/*quadrado da tela inicial*/
+.quadrado-arredondado {
+	
+	width: 45%; /* Ajuste o tamanho da largura conforme necessário */
+	height: 50vh; /* Ajuste o tamanho da altura conforme necessário */
+	max-width: 1200px; /* Define um tamanho máximo para o quadrado */
+	background-color: rgba(0, 0, 0, 0.99); /* Cor de fundo preta com 87% de opacidade */
+	border-radius: 20px;
+	position: absolute; /*não mexer*/
+	top: 53%; /* Ajuste a porcentagem para posicionar o quadrado para baixo */
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	
+
+  }
+
+
+
+  .quadrado-arredondado-login {
+	  width: 45%; /* Ajuste o tamanho da largura conforme necessário */
+	  height: 60vh; /* Ajuste o tamanho da altura conforme necessário */
+	  max-width: 1200px; /* Define um tamanho máximo para o quadrado */
+	  background-color: rgba(0, 0, 0, 0.99); /* Cor de fundo preta com 95% de opacidade */
+	  border-radius: 20px;
+	  position: absolute; /*não mexer*/
+	  top: 53%; /* Ajuste a porcentagem para posicionar o quadrado para baixo */
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  z-index: 1;
+	 
+  }
+/*quadrado fino esquerda pós login*/
+
+.quadrado-arredondado-geral-cliente {
+	
+	width: 80%; /* Ajuste o tamanho da largura conforme necessário */
+	height: 70vh; /* Ajuste o tamanho da altura conforme necessário */
+	max-width: 1200px; /* Define um tamanho máximo para o quadrado */
+	background-color: rgba(0, 0, 0, 0.99); /* Cor de fundo preta com 87% de opacidade */
+	border-radius: 20px;
+	position: absolute; /*não mexer*/
+	top: 53%; /* Ajuste a porcentagem para posicionar o quadrado para baixo */
+	left: 49%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	display:flex;
+	padding-right: 18px;
+  }
+
+
+
+
+
+  .quadrado-arredondado-geral-horario {
+	
+	width: 80%; /* Ajuste o tamanho da largura conforme necessário */
+	height: 70vh; /* Ajuste o tamanho da altura conforme necessário */
+	max-width: 1200px; /* Define um tamanho máximo para o quadrado */
+	background-color: rgba(0, 0, 0, 0.99); /* Cor de fundo preta com 87% de opacidade */
+	border-radius: 20px;
+	position: absolute; /*não mexer*/
+	top: 53%; /* Ajuste a porcentagem para posicionar o quadrado para baixo */
+	left: 49%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	padding-right: 18px;
+  }
+
+  .quadrado-arredondado-geral {
+	
+	width: 17%; /* Ajuste o tamanho da largura conforme necessário */
+	height: 70vh; /* Ajuste o tamanho da altura conforme necessário */
+	max-width: 1200px; /* Define um tamanho máximo para o quadrado */
+	background-color: rgba(0, 0, 0, 0.99); /* Cor de fundo preta com 87% de opacidade */
+	border-radius: 20px;
+	position: absolute; /*não mexer*/
+	top: 53%; /* Ajuste a porcentagem para posicionar o quadrado para baixo */
+	left: 10%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	
+
+  }
+
+  /*quadrado da listagem de horarios*/
+  .quadrado-arredondado-geral-listagem {
+	
+	width: 78%; /* Ajuste o tamanho da largura conforme necessário */
+	height: 70vh; /* Ajuste o tamanho da altura conforme necessário */
+	max-width: 1200px; /* Define um tamanho máximo para o quadrado */
+	background-color: rgba(0, 0, 0, 0.99); /* Cor de fundo preta com 87% de opacidade */
+	border-radius: 20px;
+	position: absolute; /*não mexer*/
+	top: 53%; /* Ajuste a porcentagem para posicionar o quadrado para baixo */
+	left: 59%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	
+	overflow:auto;
+	
+  }
+
+
+
+
+  
+  .quadrado-arredondado-geral-listagem-funcAtv {
+	
+	width: 78%; /* Ajuste o tamanho da largura conforme necessário */
+	height: 70vh; /* Ajuste o tamanho da altura conforme necessário */
+	max-width: 1200px; /* Define um tamanho máximo para o quadrado */
+	background-color: rgba(0, 0, 0, 0.99); /* Cor de fundo preta com 87% de opacidade */
+	border-radius: 20px;
+	position: absolute; /*não mexer*/
+	top: 53%; /* Ajuste a porcentagem para posicionar o quadrado para baixo */
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	
+	overflow:auto;
+
+  }
+  .quadrado-arredondado-geral-perfil {
+	
+	width: 78%; /* Ajuste o tamanho da largura conforme necessário */
+	height: 70vh; /* Ajuste o tamanho da altura conforme necessário */
+	max-width: 1200px; /* Define um tamanho máximo para o quadrado */
+	background-color: rgba(0, 0, 0, 0.99); /* Cor de fundo preta com 87% de opacidade */
+	border-radius: 20px;
+	position: absolute; /*não mexer*/
+	top: 53%; /* Ajuste a porcentagem para posicionar o quadrado para baixo */
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	
+	overflow:auto;
+
+  }
+  .quadrado-arredondado-estoque {
+	width: 78%; /* Ajuste o tamanho da largura conforme necessário */
+	height: 48vh; /* Ajuste o tamanho da altura conforme necessário */
+	max-width: 1200px; /* Define um tamanho máximo para o quadrado */
+	background-color: rgba(0, 0, 0, 0.99); /* Cor de fundo preta com 87% de opacidade */
+	border-radius: 20px;
+	position: absolute; /*não mexer*/
+	top: 50%; /* Ajuste a porcentagem para posicionar o quadrado para baixo */
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	
+	overflow:auto;
+   
+}
+  
+  
+
+
+
+
+
+/*extras*/
+/*/////////////////////////////////////////////////////////////*/
+
+.table_rodar{
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+
+.p1{
+	font-family: "minha fonte";
+	font-size: 20px;
+	padding-bottom: 10px;
+	color: currentColor;
+	
+}
+
+ 
+.p2{
+	font-family: "outra fonte";
+	font-size: 18px;
+	color: #06c;
+}
+
+.produtos li:hover .p1{
+	font-size: 25px;
+}
+
+.produtos li:hover{
+	border-color: #06c;
+}
+
+  
+a{
+	text-decoration: none;
+}
+
+
+.descricao_detalhes{
+	position: absolute;
+	top: 20px;
+	left: 400px;
+	padding: 10px;
+	width: 250px;
+	height: 250px;
+	text-align: center;
+}
+.texto_principal{
+	font-family: "minha fonte";
+	font-size: 40px;
+	margin: 0 0 0 30px;
+	color: black;
+}
+.texto_secundario{
+	font-family: "outra fonte";
+	font-size: 30px;
+	padding-top: 10px;
+	color: rgb(213, 213, 213);
+	
+}
+
+.textos_cima_label{
+	font-family: "outra fonte";
+	font-size: 20px;
+	padding-top: 10px;
+	color: rgb(213, 213, 213);
+	font-weight: lighter;
+}
+
+.texto_grande{
+	font-family: "outra fonte";
+	font-size:45px;
+	padding-top: 10px;
+	color: rgb(213, 213, 213);
+	text-align: center;
+	font-weight: bolder;
+	margin-bottom: 30px;
+}
+
+.imagem_miniatura {
+	max-width: 100%;
+	height: auto;
+  }
+
+
+html, body {
+    min-height: 100%;
+    height: 100%; /* Adicione esta linha */
+}
+.texto-com-borda {
+	border: 2px solid #ccc; /* Adicione a cor e largura da borda desejada aqui */
+  padding: 10px; /* Adicione algum preenchimento para espaçamento interno, se necessário */
+  border-radius: 10px; /* Adicione o raio desejado para os cantos arredondados */
+  display: inline-block; /* Garante que a largura da borda se ajuste ao conteúdo do texto */
+  font-size: 20px;
+  text-align: right;
+  
+  margin-top: 15px;
+
+  }
+  .texto-com-borda a {
+    text-decoration: none; /* Remove o sublinhado do link */
+    color: inherit; /* Herda a cor do elemento pai */
+}
+
+
+ 
+  .imagem-escura {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: brightness(0.5);
+	position: absolute;
+	top: 0;
+	left: 0;
+  }
+  .imagem-escura-2 {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: brightness(0.8);
+	position: absolute;
+	top: 0;
+	left: 0;
+  }
+
+ 
+/*                                        BOTAO                              */
+button.buttonadm {
+	
+	margin-left:30px;
+	margin-bottom: 50px;
+	margin-top: 30px;
+	top:0;
+	right:0;
+	height:70px;
+	width:210px;
+font-size: 20px;
+  }
+
+  button.buttonadm2 {
+	
+	margin-left:30px;
+	margin-bottom: 50px;
+	margin-top: 30px;
+	top:0;
+	right:0;
+	height:70px;
+	width:265px;
+font-size: 20px;
+  }
+  button.buttonadm3 {
+	
+	margin-left:30px;
+	margin-bottom: 50px;
+	margin-top: 20px;
+	
+	height:50px;
+	width:265px;
+font-size: 20px;
+  }
+  .sub{
+	height:50px;
+	width:165px;
+	font-size: 25px !important;
+}
+.subpfp{
+	margin-top: 10px;
+	height:45px;
+	width:230px;
+	font-size: 19px !important;
+}
+.btnlimpa{
+	height:40px;
+	width:175px;
+	font-size: 15px !important;
+}
+
+
+
+
+
+
+
+/*css dos alinhares a direita e esquerda*/
+.alinhaEsquerda{
+	
+	height: 100%;
+	width: 50%;
+	border-radius: 20px;
+	padding: 25px;
+	padding-left: 40px;
+	padding-right: 40px;
+	
+	
+
+	
+
+}
+
+.alinhaDireita{
+	
+	height: 100%;
+	width: 50%;
+	border-radius: 20px;
+	padding: 25px;
+	padding-left: 40px;
+	padding-right: 40px;
+
+
+	
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  /*css labels validação*/
+  
+.input-control {
+    display: flex;
+    flex-direction: column;
+	
+}
+
+.input-control input {
+    border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	
+	padding: 10px;
+	width: 100%;
+}
+ 
+
+.input-control input:focus {
+    outline: 0;
+	
+}
+
+.input-control.success input {
+    border-color: #0dad05;
+}
+
+.input-control.error input {
+    border-color: #ff3860;
+	
+}
+
+.input-control .error {
+    color: #ff3860;
+    font-size: 15px;
+    height: 13px;
+	
+}
+
+.inputs{
+	padding: 20px;
+	height: 22px;
+	
+	border-radius: 5px;
+	color: #000;
+	border: 1px solid var(--color-gray2);
+	
+	width: 100%;
+	box-sizing: border-box;
+}
+.image-upload {
+    border: 2px solid #ccc; /* Define a borda com largura, estilo e cor */
+    border-radius: 50%; /* Faz a borda circular */
+    display: inline-block;
+    cursor: pointer;
+    height: 120px;
+    width: 120px;
+    margin: 0 auto 20px; /* Centraliza horizontalmente e adiciona espaço abaixo */
+    overflow: hidden;
+    position: relative;
+    background-color: #f0f0f0; /* Cor de fundo opcional */
+}
+
+.image-upload img {
+    width: 100%; /* Faz com que a imagem ocupe a largura total do contêiner */
+    height: 100%; /* Faz com que a imagem ocupe a altura total do contêiner */
+    object-fit: cover; /* Faz com que a imagem cubra o contêiner sem distorcer */
+    border-radius: 50%; /* Garante que a imagem siga a borda circular */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centraliza a imagem */
+}
+
+.form-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh; /* Ocupa a altura total da visualização */
+  }
+  
+
+  .centroCelula{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+input[type="checkbox"] {
+    width: 30px;
+    height: 30px; 
+    margin-left: 10px; 
+    margin-bottom: 7px; 
+    
+}
+
+.botao-superior-direito {
+	position: absolute;
+	top: 20px; /* Ajuste conforme necessário */
+	right: 30px; /* Ajuste conforme necessário */
+	
+  }
+
+  .btnlimpa{
+ 
+	border: solid 3px #fff;
+	background-color: #000;
+	font-weight: 900; 
+	color: #fff;
+	 
+	}
+	 
+	.btnlimpa:hover{
+	 
+	border: solid 3px #680700;
+	background-color: #c01004;
+	color: #fff;
+	font-weight: 1000; 
+	 
+	}
+
+
+  
+  .input-control2 {
+    display: flex;
+    
+	
+}
+
+.input-control2 input {
+    border: 2px solid #f0f0f0;
+	border-radius: 4px;
+
+	padding: 10px;
+	width: 100%;
+}
+
+
+.input-control2 input:focus {
+    outline: 0;
+	
+}
+
+.input-control2.success input {
+    border-color: #0dad05;
+}
+
+.input-control2.error input {
+    border-color: #ff3860;
+	
+}
+
+.input-control2 .error {
+    color: #ff3860;
+    font-size: 15px;
+    height: 13px;
+	
+}

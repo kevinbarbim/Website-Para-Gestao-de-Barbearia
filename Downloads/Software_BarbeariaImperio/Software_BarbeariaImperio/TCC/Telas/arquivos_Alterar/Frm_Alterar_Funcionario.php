@@ -1,0 +1,295 @@
+<!doctype html>
+<?php
+session_start();
+
+// Verifica se o usuário está logado e se as variáveis de sessão estão setadas
+if (!isset($_SESSION['user']) || !isset($_SESSION['senha']) || !isset($_SESSION['id'])) {
+    session_destroy();
+    header('Location: ../Telas_Iniciais/login.php');
+    exit();
+}
+
+// Conectar ao banco de dados
+$con = mysqli_connect("localhost", "root", "", "bd_TCC");
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Obter o ID do funcionário da sessão
+$id_funcSession = $_SESSION['id'];
+
+// Consulta para obter o caminho da imagem de perfil
+$comandoSql = "SELECT path FROM tb_Funcionario WHERE id_Funcionario='$id_funcSession'";
+$resultado = mysqli_query($con, $comandoSql);
+
+if (!$resultado) {
+    die("Error executing query: " . mysqli_error($con));
+}
+
+$dados = mysqli_fetch_assoc($resultado);
+$pathImagem = $dados["path"] ? htmlspecialchars($dados["path"]) : null;// Caminho da imagem 
+
+// Fechar a conexão com o banco de dados
+mysqli_close($con);
+?>
+<html>
+  <head>
+    <title> Altera Funcionário</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+<!-- Bootstrap CSS Não mexer-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- logo marca -->
+<link rel="icon" href="../imagens/icon.png" width="50" height="50">
+
+  <!--relação com o css individual-->
+<link rel="stylesheet" href="../../css/estilo.css" type="text/css">
+
+<style>
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+   
+}
+
+.container-flex {
+    display: flex;
+    justify-content: center; /* Centraliza o quadrado */
+    width: 100%;
+    
+}
+
+
+
+
+
+.form-group {
+    flex: 1; /* Faz os grupos ocuparem espaço proporcionalmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+}
+
+
+
+.input-control input {
+    border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-size: 21px;
+	padding: 25px;
+	width: 100%;
+}
+.btn-check + .btn {
+    border-radius: 4px !important; /* Aplica borda arredondada para todos os botões */
+}
+
+
+</style>
+	  
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+  </head>
+  <body>
+    
+  <?php
+    //colocar o require do index.php
+
+    require "../ListagemFuncionarios.php";
+   ?>
+  
+<?php
+
+/*1- realizando a conexao com o banco de dados (local, usuario,senha,nomeBanco)*/
+$con=mysqli_connect("localhost","root","","bd_TCC");
+
+/*2- pegando o valor vindo da url */
+$id_func=$_GET["id"];
+
+/*3- criando o comando sql para listar os dados do cliente selecionado */
+$comandoSql="select * from tb_funcionario where id_funcionario='$id_func'";
+
+/*4- executando o comando sql */
+$resultado=mysqli_query($con, $comandoSql);
+
+/*5- pegando os dados da consulta criada e armazenando em variaveis */
+
+$dados=mysqli_fetch_assoc($resultado);
+
+$nome=$dados["Nome_Funcionario"];
+$telefone=$dados["Telefone_Funcionario"];
+$rg=$dados["RG_Funcionario"];
+$cpf=$dados["CPF_Funcionario"];
+$senha=$dados["Senha"];
+$ativo=$dados["Status"];
+$login=$dados["Login"];
+?>
+
+
+
+<header style="display: flex; justify-content: space-between; align-items: center;">
+    <a href="../Telas_Iniciais/index.php"><img src="../../imagens/logo.png" class="logo"></a>
+
+    <div style="display: flex; align-items: center;">
+        <nav>
+            <ul style="list-style: none; margin: 0; padding: 0; margin-right: 10px;">
+                <li><?php echo($_SESSION['nome']); ?></li>
+            </ul>
+        </nav>
+        
+        <img src="<?php echo $pathImagem; ?>" alt="Imagem de Perfil" style="width: 60px; height: 60px; margin-right: -13px">
+        <nav>
+        <ul>
+        
+        <li>    <?php 
+        if($id_funcSession == 1){
+        echo"<span class='texto-com-borda'><a href='http://localhost/TCC/Telas/FluxoADM/TelaInicialADM.php'>HOME </a></span>";
+        } else{
+          echo"<span class='texto-com-borda'><a href='http://localhost/TCC/Telas/FluxoFuncionario/TelaInicialFuncionario.php'>HOME </a></span>"; 
+        }?></li></ul></nav>
+        </div>
+    </div>
+</header>
+<!-- imagem de fundo -->
+  <main style="position: relative; height: 100vh;">
+      <img src="../../imagens/back.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;"alt="Sua Imagem" class="imagem-escura">
+  </main>
+
+  
+
+
+
+
+
+
+  <!--inicio quadrado centro formulario de alteração dos funcionarios-->
+  <div class="quadrado-arredondado-geral-horario center-container">
+  <div class="container-flex">
+    <!-- div do quadrrado preto de fundo-->
+    <div class="centro-quadrado-geral">                        <!-- div feita para colocar elementos no meio do quadrado-->
+
+         <h1 class="texto_grande">Relatório do funcionário <?php echo $nome ?></h1>
+         <div class="botao-superior-direito"> <?php 
+             echo"<a href='http://localhost/TCC/Telas/FluxoADM/ListagemFuncionariosAtivos.php'><img src='http://localhost/TCC/imagens/seta.png'></a>";
+            ?></div>
+         <div class="textos_cima_label">
+          
+         <form action="Alterar_Funcionario.php" method="POST"  id="formCadastroFuncionario" >                                          <!-- inicio do formulario de cadastro do horario do atendimento-->
+           
+           <div class="form-row">
+
+                  <div class="form-group col-md-6">
+                  <div class="input-control">
+                       <label for="NomeFuncionario">Nome Funcionário</label>
+                       <input type="text" class="form-control" id="NomeFuncionario" name="NomeFuncionario" placeholder="Nome do funcionário"  value="<?php echo $nome?>">
+                       <div class="error"></div>
+                  </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                  <div class="input-control">
+                     <label for="TelFuncionario">Telefone do Funcionário</label>
+                     <input type="text" class="form-control" id="TelFuncionario" name="TelFuncionario" placeholder="Telefone do funcionário" value="<?php echo $telefone?>">
+                     <div class="error"></div>   
+                </div> 
+                </div>
+                <div class="btn-group form-group col-md-2" role="group" aria-label="Basic radio toggle button group">
+                           <br> <input type="radio" class="btn-check" name="AtivoDST" id="ATIVO"  <?php if($ativo=="1") echo"checked=checked" ?> value="1">
+                            <label class="btn btn-outline-success" for="ATIVO">Ativo</label>
+    
+                            <input type="radio" class="btn-check" name="AtivoDST" id="DESATIVADO"  <?php if($ativo=="0") echo"checked=checked" ?> value="0">
+                            <label class="btn btn-outline-danger" for="DESATIVADO">Desativado</label>
+                </div>
+           </div>
+  
+           <div class="form-row">
+                <div class="form-group col-md-4">
+                <div class="input-control">
+                      <label for="RGFuncionario">RG</label>
+                      <input type="text" class="form-control" id="RGFuncionario" name="RGFuncionario" placeholder="RG do funcionário" value="<?php echo $rg?>">
+                      <div class="error"></div>
+              </div> 
+              </div>
+                <div class="form-group col-md-4">
+                <div class="input-control">
+                      <label for="CPFFuncionario">CPF</label>
+                     <input type="text" class="form-control" id="CPFFuncionario" name="CPFFuncionario" placeholder="CPF" value="<?php echo $cpf?>">
+                     <div class="error"></div>
+              </div> 
+              </div>
+               <div class="form-group col-md-4">
+               <div class="input-control">
+                    <label for="SenhaFuncionario">Senha</label>
+                    <input type="text" class="form-control" id="SenhaFuncionario" name="SenhaFuncionario" placeholder="Senha" value="<?php echo $senha?>">
+                    <div class="error"></div>
+            </div>
+            </div>
+
+          </div>
+          <div class="form row">
+          <div class="form-group col-md-4">
+          <div class="input-control">
+                    <label for="LoginFuncionario">Login</label>
+                    <input type="text" class="form-control" id="LoginFuncionario" name="LoginFuncionario" placeholder="Login / Email do funcionário" value="<?php echo $login?>">
+                    <div class="error"></div>
+              </div>
+              </div>
+          </div>
+          
+           <input type="text"  readonly name="id" id="id" class="form-control d-none" value="<?php echo $id_func?>">
+     <br>
+     <div style="text-align:left">
+  <input type="submit" value="Cadastrar" class="btn btn-outline-success sub" id="botaoLogar"></div>
+ </form><!-- fim do formulario de cadastro do horario do atendimento-->
+   </div>  
+</div> </div>
+   </div><!--fim quadrado-->
+
+
+     <footer class="footerhome">
+        <p class="rodape">
+         Centro Paula Souza - Etec Philadelpho Gouvêa Netto
+        </p>
+     </footer>	
+
+
+
+
+
+
+     <!-- Não mexer, essencial para o bootstrap funcionar-->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   
+    
+
+    <script src="../../js/validacoes/validaCadastroFuncionario.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script> <!-- pega o link da funcao de validação-->
+<script>
+  $('#CPFFuncionario').mask('000.000.000-00');  //codigo para adicionar a mascara nos campos, ja serve como validação pois impede add de letras.
+  $('#TelFuncionario').mask('(00) 00000-0000'); //função pre pronta do jquery, facilita vidas kk
+  $('#RGFuncionario').mask('00.000.000-0');
+
+</script> 
+
+  </body>
+</html>
+
